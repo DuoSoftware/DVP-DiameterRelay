@@ -124,5 +124,5 @@ function processDiameterMessages(event) {
 
 }
 
-server.listen(relayPort, relayHost);
+server.listen(relayPort);
 console.log('Started DIAMETER Relay on ' + relayHost + ':' + relayPort);
