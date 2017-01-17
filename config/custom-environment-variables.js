@@ -28,9 +28,8 @@ module.exports = {
 
 
     "Services" : {
-        "billingServiceHost": "SYS_BILLINGSERVICE_HOST",
-        //192.168.1.16"userserrvice.app.veery.cloud",
-        "billingServicePort": "SYS_BILLINGSERVICE_PORT",
+        "billingServiceHostIP": "SYS_BILLINGSERVICE_HOST_IP",
+        "billingServicePort": "SYS_BILLINGSERVICETCP_PORT",
         "billingServiceVersion": "SYS_BILLINGSERVICE_VERSION"
 
     }
