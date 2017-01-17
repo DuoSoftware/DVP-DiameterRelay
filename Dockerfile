@@ -1,16 +1,16 @@
 #FROM ubuntu
 #RUN apt-get update
 #RUN apt-get install -y git nodejs npm nodejs-legacy
-#RUN git clone git://github.com/DuoSoftware/DVP-Billing.git /usr/local/src/billingservice
-#RUN cd /usr/local/src/billingservice; npm install
-#CMD ["nodejs", "/usr/local/src/billingservice/app.js"]
+#RUN git clone git://github.com/DuoSoftware/DVP-DiameterRelay.git /usr/local/src/diameterrelay
+#RUN cd /usr/local/src/diameterrelay; npm install
+#CMD ["nodejs", "/usr/local/src/diameterrelay/app.js"]
 
-#EXPOSE 8881
+#EXPOSE 8886
 
 FROM node:5.10.0
-RUN git clone git://github.com/DuoSoftware/DVP-Billing.git /usr/local/src/billingservice
-RUN cd /usr/local/src/billingservice;
-WORKDIR /usr/local/src/billingservice
+RUN git clone git://github.com/DuoSoftware/DVP-DiameterRelay.git /usr/local/src/diameterrelay
+RUN cd /usr/local/src/diameterrelay;
+WORKDIR /usr/local/src/diameterrelay
 RUN npm install
-EXPOSE 8881
-CMD [ "node", "/usr/local/src/billingservice/app.js" ]
+EXPOSE 8886
+CMD [ "node", "/usr/local/src/diameterrelay/app.js" ]
