@@ -10,8 +10,8 @@ var serverHost = config.Services.billingServiceHostIP;
 var serverPort =  config.Services.billingServicePort;
 
 var relayRealm = 'example.com';
-var relayHost = config.Host.vdomain || 'localhost';
-var relayPort = config.Host.port || 3000;
+var relayHost = config.Host.domain;
+var relayPort = config.Host.port;
 var relayIP = config.Host.ip || '127.0.0.1';
 
 
