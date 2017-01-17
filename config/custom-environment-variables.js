@@ -12,7 +12,6 @@ module.exports = {
 
     "Host":
     {
-        "vdomain": "LB_FRONTEND",
         "domain": "HOST_NAME",
         "ip": "HOST_IP",
         "port": "HOST_PORT",
