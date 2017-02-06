@@ -7,7 +7,7 @@ var config = require('config');
 
 var serverRealm = 'example.org';
 var serverHost = config.Services.diameterServerHost;
-var serverPort =  config.Services.diameterServerHost;
+var serverPort =  config.Services.diameterServerPort;
 
 var relayRealm = 'example.com';
 var relayHost = config.Host.domain;
