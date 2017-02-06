@@ -27,7 +27,7 @@ module.exports = {
 
 
     "Services" : {
-        "diameterServerHost": "SYS_DIAMETERSERVER_HOST_IP",
+        "diameterServerHost": "SYS_DIAMETERSERVER_HOST",
         "diameterServerPort": "SYS_DIAMETERSERVER_PORT",
         "diameterServerVersion": "SYS_DIAMETERSERVER_VERSION"
 
