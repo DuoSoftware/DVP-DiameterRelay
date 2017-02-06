@@ -28,10 +28,10 @@ module.exports = {
 
     "Services" : {
         //"billingServiceHost": "billingservice.app.veery.cloud",
-        "billingServiceHost": "localhost",
+        "diameterServerHost": "localhost",
         //192.168.1.16"userserrvice.app.veery.cloud",
-        "billingServicePort": "5555",
-        "billingServiceVersion": "1.0.0.0"
+        "diameterServerPort": "5555",
+        "diameterServerVersion": "1.0.0.0"
 
     }
 

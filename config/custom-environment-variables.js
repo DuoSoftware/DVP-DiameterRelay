@@ -27,9 +27,9 @@ module.exports = {
 
 
     "Services" : {
-        "billingServiceHostIP": "SYS_BILLINGSERVICE_HOST_IP",
-        "billingServicePort": "SYS_BILLINGSERVICETCP_PORT",
-        "billingServiceVersion": "SYS_BILLINGSERVICE_VERSION"
+        "diameterServerHost": "SYS_DIAMETERSERVER_HOST_IP",
+        "diameterServerPort": "SYS_DIAMETERSERVER_PORT",
+        "diameterServerVersion": "SYS_DIAMETERSERVER_VERSION"
 
     }
 };

@@ -6,8 +6,8 @@ var config = require('config');
 
 
 var serverRealm = 'example.org';
-var serverHost = config.Services.billingServiceHostIP;
-var serverPort =  config.Services.billingServicePort;
+var serverHost = config.Services.diameterServerHost;
+var serverPort =  config.Services.diameterServerHost;
 
 var relayRealm = 'example.com';
 var relayHost = config.Host.domain;
