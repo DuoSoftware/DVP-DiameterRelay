@@ -40,7 +40,6 @@ var server = diameter.createServer(optionsAsTcpServer, function(socket) {
     });
 });
 
-server.timeout = 5000;
 
 
 var relayToServerSocket = diameter.createConnection(optionsAsTcpClient, function() {
