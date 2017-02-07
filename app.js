@@ -44,22 +44,24 @@ var server = diameter.createServer(optionsAsTcpServer, function(socket) {
 
 var relayToServerSocket = diameter.createConnection(optionsAsTcpClient, function() {
 
-
-
+    relayToServerSocket.setNoDelay(true);
+    relayToServerSocket.setKeepAlive(true, 2000);
 
     var connection = relayToServerSocket.diameterConnection;
 
-
-    relayToServerSocket.on('end', function () {
-        console.log('Connection Closed Reconnecting...');
-        relayToServerSocket = diameter.createConnection(optionsAsTcpClient);
-    });
 
     relayToServerSocket.on('error', function (error) {
 
         console.log('ERROR : '+error);
 
     });
+
+    setInterval(function() {
+        var msg = 'Heartbeat';
+        relayToServerSocket.write(msg, function() {
+            console.log('Sent:', msg);
+        });
+    }, 55000);
 
 
     var request = connection.createRequest('Diameter Common Messages', 'Capabilities-Exchange');
@@ -84,7 +86,10 @@ var relayToServerSocket = diameter.createConnection(optionsAsTcpClient, function
 
 });
 
-relayToServerSocket.on("diameterMessage", processDiameterMessages);
+//relayToServerSocket.setNoDelay(true);
+//relayToServerSocket.setKeepAlive(true);
+
+
 
 
 
