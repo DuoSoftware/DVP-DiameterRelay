@@ -44,7 +44,24 @@ var server = diameter.createServer(optionsAsTcpServer, function(socket) {
 
 var relayToServerSocket = diameter.createConnection(optionsAsTcpClient, function() {
 
+
+
+
     var connection = relayToServerSocket.diameterConnection;
+
+
+    relayToServerSocket.on('end', function () {
+        console.log('Connection Closed Reconnecting...');
+        relayToServerSocket = diameter.createConnection(optionsAsTcpClient);
+    });
+
+    relayToServerSocket.on('error', function (error) {
+
+        console.log('ERROR : '+error);
+
+    });
+
+
     var request = connection.createRequest('Diameter Common Messages', 'Capabilities-Exchange');
     request.body = request.body.concat([
         [ 'Origin-Host', relayHost ],
