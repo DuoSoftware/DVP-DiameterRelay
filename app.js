@@ -40,60 +40,57 @@ var server = diameter.createServer(optionsAsTcpServer, function(socket) {
     });
 });
 
-
-
-var relayToServerSocket = diameter.createConnection(optionsAsTcpClient, function() {
-
-    relayToServerSocket.setNoDelay(true);
-    relayToServerSocket.setKeepAlive(true, 2000);
-
-    var connection = relayToServerSocket.diameterConnection;
-
-
-    relayToServerSocket.on('error', function (error) {
-
-        console.log('ERROR : '+error);
-
-    });
-
-    setInterval(function() {
-        var msg = 'Heartbeat';
-        relayToServerSocket.write(msg, function() {
-            console.log('Sent:', msg);
-        });
-    }, 55000);
-
-
-    var request = connection.createRequest('Diameter Common Messages', 'Capabilities-Exchange');
-    request.body = request.body.concat([
-        [ 'Origin-Host', relayHost ],
-        [ 'Origin-Realm', relayRealm ],
-        [ 'Vendor-Id', 10415 ],
-        [ 'Origin-State-Id', 219081 ],
-        [ 'Supported-Vendor-Id', 10415 ],
-        [ 'Auth-Application-Id', 'Diameter Credit Control' ]
-    ]);
-    connection.sendRequest(request).then(function(response) {
-        const avpObj = avp.toObject(response.body);
-        console.log(avpObj)
-        if(avpObj.resultCode=='DIAMETER_SUCCESS'){
-            //console.log('sdsdsdsdqqqqqcddcdc')
-
-        }
-    }, function(error) {
-        console.log('Error sending request: ' + error);
-    });
-
-});
-
-//relayToServerSocket.setNoDelay(true);
-//relayToServerSocket.setKeepAlive(true);
-
+var Interval;
 
 
 
 
 function processDiameterMessages(event) {
+
+
+    var relayToServerSocket = diameter.createConnection(optionsAsTcpClient, function() {
+
+        relayToServerSocket.setNoDelay(true);
+        relayToServerSocket.setKeepAlive(true, 2000);
+
+        var connection = relayToServerSocket.diameterConnection;
+
+
+        relayToServerSocket.on('error', function (error) {
+
+            console.log('ERROR : '+error);
+
+        });
+
+        var request = connection.createRequest('Diameter Common Messages', 'Capabilities-Exchange');
+        request.body = request.body.concat([
+            [ 'Origin-Host', relayHost ],
+            [ 'Origin-Realm', relayRealm ],
+            [ 'Vendor-Id', 10415 ],
+            [ 'Origin-State-Id', 219081 ],
+            [ 'Supported-Vendor-Id', 10415 ],
+            [ 'Auth-Application-Id', 'Diameter Credit Control' ]
+        ]);
+        connection.sendRequest(request).then(function(response) {
+            const avpObj = avp.toObject(response.body);
+            console.log(avpObj)
+            if(avpObj.resultCode=='DIAMETER_SUCCESS'){
+                //console.log('sdsdsdsdqqqqqcddcdc')
+
+            }
+        }, function(error) {
+            console.log('Error sending request: ' + error);
+        });
+
+
+        /*Interval = setInterval(function() {
+            var msg = 'Heartbeat';
+            relayToServerSocket.write(msg, function() {
+                console.log('Sent:', msg);
+            });
+        }, 55000);*/
+
+    });
 
     if (event.message.command === 'Capabilities-Exchange') {
         event.response.body = event.response.body.concat([
