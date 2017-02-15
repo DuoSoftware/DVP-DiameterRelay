@@ -14,6 +14,11 @@ var relayHost = config.Host.domain;
 var relayPort = config.Host.port;
 var relayIP = config.Host.ip || '127.0.0.1';
 
+process.on('uncaughtException',function(err){
+    console.log("UNCAUGHT EXCEPTION");
+    console.log(err.stack);
+});
+
 
 var optionsAsTcpServer = {
     beforeAnyMessage: diameter.logMessage,
