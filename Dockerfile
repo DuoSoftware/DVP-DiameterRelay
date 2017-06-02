@@ -8,7 +8,8 @@
 #EXPOSE 8886
 
 FROM node:5.10.0
-RUN git clone git://github.com/DuoSoftware/DVP-DiameterRelay.git /usr/local/src/diameterrelay
+ARG VERSION_TAG
+RUN git clone -b $VERSION_TAG https://github.com/DuoSoftware/DVP-DiameterRelay.git /usr/local/src/diameterrelay
 RUN cd /usr/local/src/diameterrelay;
 WORKDIR /usr/local/src/diameterrelay
 RUN npm install
